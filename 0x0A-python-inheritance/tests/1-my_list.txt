@@ -1,0 +1,47 @@
+>>> MyList = __import__('1-my_list').MyList
+
+## construction tests
+>>> MyList()
+[]
+>>> MyList([1, 2, 3])
+[1, 2, 3]
+>>> MyList([3, 2, 1])
+[3, 2, 1]
+>>> MyList((1, 2, 3))
+[1, 2, 3]
+
+## printing tests
+>>> MyList().print_sorted()
+[]
+>>> MyList([]).print_sorted()
+[]
+>>> MyList([1, 2, 3]).print_sorted()
+[1, 2, 3]
+>>> MyList([3, 2, 1]).print_sorted()
+[1, 2, 3]
+>>> MyList([3, 2, 1, True, 1, -1, -10, False]).print_sorted()
+[-10, -1, False, 1, True, 1, 2, 3]
+
+# side effects check
+>>> ls = MyList([3, 2, 1])
+>>> ls.print_sorted()
+[1, 2, 3]
+>>> ls
+[3, 2, 1]
+>>> ls == [3, 2, 1]
+True
+>>> issubclass(MyList, list)
+True
+>>> ls.append(-1)
+>>> ls
+[3, 2, 1, -1]
+>>> ls.print_sorted()
+[-1, 1, 2, 3]
+
+## errors tests
+>>> MyList(4)
+Traceback (most recent call last):
+TypeError: 'int' object is not iterable
+>>> MyList([1, 2, 3]).print_sorted(1)
+Traceback (most recent call last):
+TypeError: print_sorted() takes 1 positional argument but 2 were given
